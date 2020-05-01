@@ -20,7 +20,7 @@ import java.util.List;
 public class PersonController {
     //Repository'e baglanacak ve onun uzerinden calısıcak bu yuzden ;
 
-    private PersonRepository personRepository;
+    private final PersonRepository personRepository;
 
 
     /*public PersonController(PersonRepository personRepository) {

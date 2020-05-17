@@ -27,15 +27,23 @@ public class NotificationProducer {
         notification.setMessage("WELCOME TO RABBITMQ");
         notification.setSeen(Boolean.FALSE);
 
-        sendToQueue(notification);
+        try {
+            Thread t=new Thread();
+            t.start();
+            sendToQueue(notification);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    public void sendToQueue(Notification notification) {
+    public void sendToQueue(Notification notification) throws InterruptedException  {
         System.out.println("Notification Sent ID : " + notification.getNotificationId());
         rabbitTemplate.convertAndSend(exchangeName, routingName, notification);
+        Thread.sleep(5000);
     }
 
 }
